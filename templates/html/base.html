@@ -1,0 +1,59 @@
+{% extends 'html/index.html' %}
+<!DOCTYPE html>
+<html lang="en">
+{% block base %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>check status</title>
+    <style>
+        table, th, td {
+          border: 1px solid black;
+          border-collapse: collapse;
+        }
+        th, td {
+          padding: 5px;
+          text-align: left;    
+        }
+        </style>
+</head>
+<body>
+    <div class="row">
+    <div class="col-5" >
+        <h1>Status Code</h1>
+    <table>
+        <tr>
+            <th>url</th>
+            <th>Status</th>
+            <th>Time</th>
+
+        </tr>
+        <tr>
+            <td>{{url}}</td>
+            <td>{{stts}}</td>
+            <td>{{time}}</td>
+
+        </tr>
+    </table>
+    </div>
+    <div class="col-5" >
+        {% if chart %}
+            <img src="data:image/png;base64, {{chart|safe}}">
+    
+        {% endif %}
+    </div>
+    </div>
+
+
+
+
+    <script>
+        function nextReport() { window.location.href = "{% url 'search-graph' %}" ; }
+        setTimeout(nextReport, 5000);
+    </script>
+  
+    
+</body>
+{% endblock base %}
+</html>
